@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<manifest>
+  <control
+    constructor="StyledSwitch"
+    control-type="standard"
+    description-key="Control_Description_Key"
+    display-name-key="Control_Display_Name_Key"
+    namespace="AlbanianXrm"
+    preview-image="img\preview-image.png"
+    version="1.0.3"
+  >
+    <external-service-usage 
+      enabled="false" 
+    />
+    <property
+      name="Value"
+      display-name-key="Property_Display_Key"
+      description-key="Property_Desc_Key"
+      of-type="TwoOptions"
+      usage="bound"
+      required="true"
+    />
+    <property 
+      name="checkedColor"
+      display-name-key="Checked_Color_Display_Key"
+      description-key="Checked_Color_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+      />
+    <resources>
+      <code 
+        order="1" 
+        path="index.ts" 
+      />     
+      <resx 
+        path="strings/MultiSwitch.1033.resx" 
+        version="1.0.0" 
+      />
+    </resources>
+  </control>
+</manifest>
