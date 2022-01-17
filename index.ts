@@ -47,7 +47,12 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
     const stylesNotifier = this._stylesNotifier;
     context.mode.trackContainerResize(true);
     this._styles = {
-      TrueHandleFill: context.parameters.checkedColor.raw || undefined
+      FalseHandleFill: context.parameters.FalseHandleFill.raw || undefined,
+      FalseHandleImage: context.parameters.FalseHandleImage.raw || undefined,
+      FalseTrackFill: context.parameters.FalseTrackFill.raw || undefined,
+      TrueHandleFill: context.parameters.TrueHandleFill.raw || undefined,
+      TrueHandleImage: context.parameters.TrueHandleImage.raw || undefined,
+      TrueTrackFill: context.parameters.TrueTrackFill.raw || undefined
     };
     const app = createElement(
       App,
@@ -113,14 +118,24 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
 
   private checkStyles(context: ComponentFramework.Context<IInputs>) {
     if (
-      this._styles.TrueHandleFill === context.parameters.checkedColor.raw &&
+      this._styles.FalseHandleFill ===context.parameters.FalseHandleFill.raw &&
+      this._styles.FalseHandleImage=== context.parameters.FalseHandleImage.raw &&
+      this._styles.FalseTrackFill === context.parameters.FalseTrackFill.raw &&
+      this._styles.TrueHandleFill === context.parameters.TrueHandleFill.raw &&
+      this._styles.TrueHandleImage === context.parameters.TrueHandleImage.raw &&
+      this._styles.TrueTrackFill === context.parameters.TrueTrackFill.raw &&
       this._styles.Width === context.mode.allocatedWidth &&
       this._styles.Height === context.mode.allocatedHeight
     ) {
       return;
     }
     this._styles = {
-      TrueHandleFill: context.parameters.checkedColor.raw || undefined,
+      FalseHandleFill: context.parameters.FalseHandleFill.raw || undefined,
+      FalseHandleImage: context.parameters.FalseHandleImage.raw || undefined,
+      FalseTrackFill: context.parameters.FalseTrackFill.raw || undefined,      
+      TrueHandleFill: context.parameters.TrueHandleFill.raw || undefined,
+      TrueHandleImage: context.parameters.TrueHandleImage.raw || undefined,
+      TrueTrackFill: context.parameters.TrueTrackFill.raw || undefined,
       Width: context.mode.allocatedWidth,
       Height: context.mode.allocatedHeight,
     };

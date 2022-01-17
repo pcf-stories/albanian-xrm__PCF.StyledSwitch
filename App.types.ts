@@ -9,7 +9,6 @@ export interface IStyledSwitchProps {
     'TrueHandleImage'?:string;
     Height?: number;
     Width?: number;
-    Padding?: number;
 }
 
 export interface IAppProps {

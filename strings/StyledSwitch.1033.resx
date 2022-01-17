@@ -65,9 +65,45 @@
     <value>Display a TwoOptions field as a Switch with style</value>
 </data>
 <data name="Property_Display_Key" xml:space="preserve">
-    <value>The field to replace</value>
+    <value>Value</value>
 </data>
 <data name="Property_Desc_Key" xml:space="preserve">
     <value>The TwoOptions Field</value>
+</data>
+<data name="False_Handle_Fill_Display_Key" xml:space="preserve">
+    <value>False Handle Fill</value>
+</data>
+<data name="False_Handle_Fill_Desc_Key" xml:space="preserve">
+    <value>The fill color of the handle when the switch value is false</value>
+</data>
+<data name="False_Handle_Image_Display_Key" xml:space="preserve">
+    <value>False Handle Image</value>
+</data>
+<data name="False_Handle_Image_Desc_Key" xml:space="preserve">
+    <value>The image inside the handle when the switch value is false</value>
+</data>
+<data name="False_Track_Fill_Display_Key" xml:space="preserve">
+    <value>False Track Fill</value>
+</data>
+<data name="False_Track_Fill_Desc_Key" xml:space="preserve">
+    <value>The fill color of the track when the switch value is false</value>
+</data>
+<data name="True_Handle_Fill_Display_Key" xml:space="preserve">
+    <value>True Handle Fill</value>
+</data>
+<data name="True_Handle_Fill_Desc_Key" xml:space="preserve">
+    <value>The fill color of the handle when the switch value is true</value>
+</data>
+<data name="True_Handle_Image_Display_Key" xml:space="preserve">
+    <value>True Handle Image</value>
+</data>
+<data name="True_Handle_Image_Desc_Key" xml:space="preserve">
+    <value>The image inside the handle when the switch value is true</value>
+</data>
+<data name="True_Track_Fill_Display_Key" xml:space="preserve">
+    <value>True Track Fill</value>
+</data>
+<data name="True_Track_Fill_Desc_Key" xml:space="preserve">
+    <value>The fill color of the track when the switch value is true</value>
 </data>
 </root>

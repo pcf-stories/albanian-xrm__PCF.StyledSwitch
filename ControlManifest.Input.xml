@@ -7,11 +7,9 @@
     display-name-key="Control_Display_Name_Key"
     namespace="AlbanianXrm"
     preview-image="img\preview-image.png"
-    version="1.0.3"
+    version="0.1.0"
   >
-    <external-service-usage 
-      enabled="false" 
-    />
+    <external-service-usage enabled="false" />
     <property
       name="Value"
       display-name-key="Property_Display_Key"
@@ -20,23 +18,63 @@
       usage="bound"
       required="true"
     />
-    <property 
-      name="checkedColor"
-      display-name-key="Checked_Color_Display_Key"
-      description-key="Checked_Color_Desc_Key"
+     <property
+      name="FalseHandleFill"
+      display-name-key="False_Handle_Fill_Display_Key"
+      description-key="False_Handle_Fill_Desc_Key"
       of-type="SingleLine.Text"
       usage="input"
       required="false"
-      />
+      default-value=""
+    />
+          <property
+      name="FalseHandleImage"
+      display-name-key="False_Image_Display_Key"
+      description-key="False_Image_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+      default-value=""
+    />
+      <property
+      name="FalseTrackFill"
+      display-name-key="False_Track_Fill_Display_Key"
+      description-key="False_Track_Fill_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+      default-value=""
+    />
+    <property
+      name="TrueHandleFill"
+      display-name-key="True_Handle_Fill_Display_Key"
+      description-key="True_Handle_Fill_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+      default-value=""
+    />
+    <property
+      name="TrueHandleImage"
+      display-name-key="True_Image_Display_Key"
+      description-key="True_Image_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+      default-value=""
+    />
+    <property
+      name="TrueTrackFill"
+      display-name-key="True_Track_Fill_Display_Key"
+      description-key="True_Track_Fill_Desc_Key"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+      default-value=""
+    />  
     <resources>
-      <code 
-        order="1" 
-        path="index.ts" 
-      />     
-      <resx 
-        path="strings/MultiSwitch.1033.resx" 
-        version="1.0.0" 
-      />
+      <code order="1" path="index.ts" />     
+      <resx path="strings/StyledSwitch.1033.resx" version="1.0.0" />
     </resources>
   </control>
 </manifest>
