@@ -5,6 +5,8 @@ import { styled } from '@mui/material/styles';
 
 import StyleContext from '@albanian-xrm/styled-switch/StyleContext';
 
+const ASPECT_RATIO = 2.5;
+
 const UISwitch = styled(Switch)(() => {
   let {
     FalseHandleFill,
@@ -16,9 +18,10 @@ const UISwitch = styled(Switch)(() => {
     TrueHandleImage,
     Width: width = 62,
   } = useContext(StyleContext);
-  if (width < height * 3) {
-    height = Math.floor(width / 3);
+  if (width < height * ASPECT_RATIO) {
+    height = Math.floor(width / ASPECT_RATIO);
   }
+  width = height * ASPECT_RATIO;
 
   if (!FalseHandleFill || FalseHandleFill[0] !== '#') {
     FalseHandleFill = '#1d00a3';
@@ -32,8 +35,6 @@ const UISwitch = styled(Switch)(() => {
   if (!TrueTrackFill || TrueTrackFill[0] !== '#') {
     TrueTrackFill = '#bcc5c7';
   }
-
-  width = height * 2.5;
 
   const padding = Math.floor((height - 4) / 4);
   const iconWidth = height - 2 * padding;

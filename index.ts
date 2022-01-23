@@ -46,13 +46,27 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
     const disabledNotifier = this._disabledNotifier;
     const stylesNotifier = this._stylesNotifier;
     context.mode.trackContainerResize(true);
+    const Width =
+      context.mode.allocatedWidth > 0
+        ? context.mode.allocatedWidth
+        : container.clientWidth > 0
+        ? container.clientWidth
+        : container.parentElement?.clientWidth;
+        const Height =
+        context.mode.allocatedHeight > 0
+        ? context.mode.allocatedHeight
+        : container.clientHeight > 0
+        ? container.clientHeight
+        : container.parentElement?.clientHeight;
     this._styles = {
       FalseHandleFill: context.parameters.FalseHandleFill.raw || undefined,
       FalseHandleImage: context.parameters.FalseHandleImage.raw || undefined,
       FalseTrackFill: context.parameters.FalseTrackFill.raw || undefined,
       TrueHandleFill: context.parameters.TrueHandleFill.raw || undefined,
       TrueHandleImage: context.parameters.TrueHandleImage.raw || undefined,
-      TrueTrackFill: context.parameters.TrueTrackFill.raw || undefined
+      TrueTrackFill: context.parameters.TrueTrackFill.raw || undefined,
+      Width,
+      Height
     };
     const app = createElement(
       App,
@@ -117,28 +131,41 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
   }
 
   private checkStyles(context: ComponentFramework.Context<IInputs>) {
+    const Width =
+    context.mode.allocatedWidth > 0
+      ? context.mode.allocatedWidth
+      : this._container.clientWidth > 0
+      ? this._container.clientWidth
+      : this._container.parentElement?.clientWidth;
+      const Height =
+      context.mode.allocatedHeight > 0
+      ? context.mode.allocatedHeight
+      : this._container.clientHeight > 0
+      ? this._container.clientHeight
+      : this._container.parentElement?.clientHeight;
     if (
-      this._styles.FalseHandleFill ===context.parameters.FalseHandleFill.raw &&
-      this._styles.FalseHandleImage=== context.parameters.FalseHandleImage.raw &&
+      this._styles.FalseHandleFill === context.parameters.FalseHandleFill.raw &&
+      this._styles.FalseHandleImage === context.parameters.FalseHandleImage.raw &&
       this._styles.FalseTrackFill === context.parameters.FalseTrackFill.raw &&
       this._styles.TrueHandleFill === context.parameters.TrueHandleFill.raw &&
       this._styles.TrueHandleImage === context.parameters.TrueHandleImage.raw &&
       this._styles.TrueTrackFill === context.parameters.TrueTrackFill.raw &&
-      this._styles.Width === context.mode.allocatedWidth &&
-      this._styles.Height === context.mode.allocatedHeight
+      this._styles.Width === Width &&
+      this._styles.Height === Height
     ) {
       return;
     }
     this._styles = {
       FalseHandleFill: context.parameters.FalseHandleFill.raw || undefined,
       FalseHandleImage: context.parameters.FalseHandleImage.raw || undefined,
-      FalseTrackFill: context.parameters.FalseTrackFill.raw || undefined,      
+      FalseTrackFill: context.parameters.FalseTrackFill.raw || undefined,
       TrueHandleFill: context.parameters.TrueHandleFill.raw || undefined,
       TrueHandleImage: context.parameters.TrueHandleImage.raw || undefined,
       TrueTrackFill: context.parameters.TrueTrackFill.raw || undefined,
-      Width: context.mode.allocatedWidth,
-      Height: context.mode.allocatedHeight,
+      Width,
+      Height,
     };
+    console.log(this._styles);
     this._stylesNotifier.notify(this._styles);
   }
 }
