@@ -52,21 +52,21 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
         : container.clientWidth > 0
         ? container.clientWidth
         : container.parentElement?.clientWidth;
-        const Height =
-        context.mode.allocatedHeight > 0
+    const Height =
+      context.mode.allocatedHeight > 0
         ? context.mode.allocatedHeight
         : container.clientHeight > 0
         ? container.clientHeight
         : container.parentElement?.clientHeight;
     this._styles = {
-      FalseHandleFill: context.parameters.FalseHandleFill.raw || undefined,
-      FalseHandleImage: context.parameters.FalseHandleImage.raw || undefined,
-      FalseTrackFill: context.parameters.FalseTrackFill.raw || undefined,
-      TrueHandleFill: context.parameters.TrueHandleFill.raw || undefined,
-      TrueHandleImage: context.parameters.TrueHandleImage.raw || undefined,
-      TrueTrackFill: context.parameters.TrueTrackFill.raw || undefined,
+      FalseHandleFill: context.parameters.FalseHandleFill.raw,
+      FalseHandleImage: context.parameters.FalseHandleImage.raw,
+      FalseTrackFill: context.parameters.FalseTrackFill.raw,
+      TrueHandleFill: context.parameters.TrueHandleFill.raw,
+      TrueHandleImage: context.parameters.TrueHandleImage.raw,
+      TrueTrackFill: context.parameters.TrueTrackFill.raw,
       Width,
-      Height
+      Height,
     };
     const app = createElement(
       App,
@@ -83,6 +83,12 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
     );
     // Add control initialization code
     render(app, container);
+
+    if ((Width || 0) > 0 && (Height || 0) > 0) {
+      return;
+    }
+
+    context.factory.requestRender();
   }
 
   /**
@@ -132,17 +138,17 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
 
   private checkStyles(context: ComponentFramework.Context<IInputs>) {
     const Width =
-    context.mode.allocatedWidth > 0
-      ? context.mode.allocatedWidth
-      : this._container.clientWidth > 0
-      ? this._container.clientWidth
-      : this._container.parentElement?.clientWidth;
-      const Height =
+      context.mode.allocatedWidth > 0
+        ? context.mode.allocatedWidth
+        : this._container.clientWidth > 0
+        ? this._container.clientWidth
+        : this._container.parentElement?.clientWidth;
+    const Height =
       context.mode.allocatedHeight > 0
-      ? context.mode.allocatedHeight
-      : this._container.clientHeight > 0
-      ? this._container.clientHeight
-      : this._container.parentElement?.clientHeight;
+        ? context.mode.allocatedHeight
+        : this._container.clientHeight > 0
+        ? this._container.clientHeight
+        : this._container.parentElement?.clientHeight;
     if (
       this._styles.FalseHandleFill === context.parameters.FalseHandleFill.raw &&
       this._styles.FalseHandleImage === context.parameters.FalseHandleImage.raw &&
@@ -156,16 +162,15 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
       return;
     }
     this._styles = {
-      FalseHandleFill: context.parameters.FalseHandleFill.raw || undefined,
-      FalseHandleImage: context.parameters.FalseHandleImage.raw || undefined,
-      FalseTrackFill: context.parameters.FalseTrackFill.raw || undefined,
-      TrueHandleFill: context.parameters.TrueHandleFill.raw || undefined,
-      TrueHandleImage: context.parameters.TrueHandleImage.raw || undefined,
-      TrueTrackFill: context.parameters.TrueTrackFill.raw || undefined,
+      FalseHandleFill: context.parameters.FalseHandleFill.raw,
+      FalseHandleImage: context.parameters.FalseHandleImage.raw,
+      FalseTrackFill: context.parameters.FalseTrackFill.raw,
+      TrueHandleFill: context.parameters.TrueHandleFill.raw,
+      TrueHandleImage: context.parameters.TrueHandleImage.raw,
+      TrueTrackFill: context.parameters.TrueTrackFill.raw,
       Width,
       Height,
     };
-    console.log(this._styles);
     this._stylesNotifier.notify(this._styles);
   }
 }

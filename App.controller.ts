@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { IAppProps } from '@albanian-xrm/styled-switch/App.types';
 
 const useAppController = ({
@@ -10,10 +10,22 @@ const useAppController = ({
   styles,
   stylesNotifier,
 }: IAppProps) => {
-  
   const [value, setValue] = useState(initialValue);
   const [disabled, setDisabled] = useState(disabledProp);
   const [context, setContext] = useState(styles);
+  const [handlerId, disabledHandlerId, stylesHandlerId] = useMemo(() => {
+    return [
+      notifier.subscribe((updatedValue) => {
+        setValue(updatedValue);
+      }),
+      disabledNotifier.subscribe((updatedValue) => {
+        setDisabled(updatedValue);
+      }),
+      stylesNotifier.subscribe((updatedValue) => {
+        setContext(updatedValue);
+      }),
+    ];
+  }, [notifier, disabledNotifier, stylesNotifier]);
   const onChecked = (checked: boolean) => {
     setValue((oldValue) => {
       onValueChanged(checked);
@@ -21,27 +33,18 @@ const useAppController = ({
     });
   };
   useEffect(() => {
-    const handlerId = notifier.subscribe((updatedValue) => {
-      setValue(updatedValue);
-    });
-    const disabledHandlerId = disabledNotifier.subscribe((updatedValue) => {
-      setDisabled(updatedValue);
-    });
-    const stylesHandlerId = stylesNotifier.subscribe((updatedValue)=>{
-      setContext(updatedValue);
-    })
     return () => {
       notifier.unsubscribe(handlerId);
       disabledNotifier.unsubscribe(disabledHandlerId);
       stylesNotifier.unsubscribe(stylesHandlerId);
     };
-  }, []);
+  }, [handlerId, disabledHandlerId, stylesHandlerId]);
 
   return {
     disabled,
     onChecked,
     value,
-    context
+    context,
   };
 };
 
