@@ -5,6 +5,7 @@ import App from '@albanian-xrm/styled-switch/App';
 import { IStyledSwitchProps } from '@albanian-xrm/styled-switch/App.types';
 import { IInputs, IOutputs } from '@albanian-xrm/styled-switch/generated/ManifestTypes';
 import { IHandler, Notifier, SwitchValue } from '@albanian-xrm/styled-switch/notifier';
+import '@albanian-xrm/styled-switch/banner';
 
 export class StyledSwitch implements ComponentFramework.StandardControl<IInputs, IOutputs> {
   private _notifier = new Notifier<SwitchValue>();
