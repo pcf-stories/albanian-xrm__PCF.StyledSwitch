@@ -51,7 +51,7 @@ const backgroundImage = encodeURIComponent(`
 `);
 
 console.info(
-  '%c\tStyled Switch\t\r\n%c\t\r\n%cNeed high quality components\r\nContact us: %c%s%s%s',
+  '%c\tStyled Switch\t\r\n%c\t\r\n%cNeed high quality components?\r\nContact us: %c%s%s%s',
   'font-size:16px;',
   `background-image: url('data:image/svg+xml;utf8,${backgroundImage}');background-repeat: no-repeat;background-position: center;font-size:84px;`,
   ``,
