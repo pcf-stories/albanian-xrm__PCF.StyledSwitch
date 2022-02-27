@@ -7,7 +7,7 @@
     display-name-key="Control_Display_Name_Key"
     namespace="AlbanianXrm"
     preview-image="img\preview-image.png"
-    version="1.0.0"
+    version="1.0.1"
   >
     <external-service-usage enabled="false" />
     <property
@@ -29,8 +29,8 @@
     />
     <property
       name="FalseHandleImage"
-      display-name-key="False_Image_Display_Key"
-      description-key="False_Image_Desc_Key"
+      display-name-key="False_Handle_Image_Display_Key"
+      description-key="False_Handle_Image_Desc_Key"
       of-type="SingleLine.Text"
       usage="input"
       required="false"
@@ -56,8 +56,8 @@
     />
     <property
       name="TrueHandleImage"
-      display-name-key="True_Image_Display_Key"
-      description-key="True_Image_Desc_Key"
+      display-name-key="True_Handle_Image_Display_Key"
+      description-key="True_Handle_Image_Desc_Key"
       of-type="SingleLine.Text"
       usage="input"
       required="false"

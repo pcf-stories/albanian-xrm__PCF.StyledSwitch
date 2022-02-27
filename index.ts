@@ -5,15 +5,16 @@ import App from '@albanian-xrm/styled-switch/App';
 import { IStyledSwitchProps } from '@albanian-xrm/styled-switch/App.types';
 import { IInputs, IOutputs } from '@albanian-xrm/styled-switch/generated/ManifestTypes';
 import { IHandler, Notifier, SwitchValue } from '@albanian-xrm/styled-switch/notifier';
-import '@albanian-xrm/styled-switch/banner';
 
 export class StyledSwitch implements ComponentFramework.StandardControl<IInputs, IOutputs> {
   private _notifier = new Notifier<SwitchValue>();
   private _disabledNotifier = new Notifier<boolean>();
   private _stylesNotifier = new Notifier<IStyledSwitchProps>();
+  private _visibleNotifier = new Notifier<boolean>();
   private _value: SwitchValue;
   private _styles: IStyledSwitchProps;
   private _disabled: boolean;
+  private _visible: boolean;
   private _container: HTMLDivElement;
   /**
    * Empty constructor.
@@ -43,9 +44,12 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
     const disabled = this._disabled;
     const initialValue = context.parameters.Value.raw;
     this._value = initialValue;
+    const initialVisible = context.mode.isVisible;
+    this._visible = initialVisible;
     const notifier = this._notifier;
     const disabledNotifier = this._disabledNotifier;
     const stylesNotifier = this._stylesNotifier;
+    const visibleNotifier = this._visibleNotifier;
     context.mode.trackContainerResize(true);
     const Width =
       context.mode.allocatedWidth > 0
@@ -72,13 +76,15 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
     const app = createElement(
       App,
       {
-        styles: this._styles,
         disabled,
+        initialStyles: this._styles,
         initialValue,
+        initialVisible,
         onValueChanged,
         notifier,
         disabledNotifier,
         stylesNotifier,
+        visibleNotifier,
       },
       null,
     );
@@ -99,6 +105,7 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
   public updateView(context: ComponentFramework.Context<IInputs>): void {
     this.checkStyles(context);
     this.checkDisabled(context.mode.isControlDisabled);
+    this.checkVisible(context.mode.isVisible);
     this.checkSelection(context.parameters.Value.raw);
   }
 
@@ -127,6 +134,14 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
     }
     this._disabled = disabled;
     this._disabledNotifier.notify(this._disabled);
+  }
+
+  private checkVisible(visible: boolean) {
+    if (this._visible === visible) {
+      return;
+    }
+    this._visible = visible;
+    this._visibleNotifier.notify(this._visible);
   }
 
   private checkSelection(value: boolean) {

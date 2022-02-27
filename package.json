@@ -1,0 +1,12 @@
+{
+  "name": "styledswitch",
+  "version": "1.0.0",
+  "description": "To use the component follow these steps:\r 1. Import the managed solution into your environment\r 2. Configure the component for your TwoOptions form controls\r    1. Customize the look and feel of each individual control\r 3. The component is compatible with Canvas apps too\r 4. Enjoy!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

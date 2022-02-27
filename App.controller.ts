@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { IAppProps } from '@albanian-xrm/styled-switch/App.types';
+import useSwitchStyle from '@albanian-xrm/styled-switch/hooks/useSwitchStyle';
 
 const useAppController = ({
   disabled: disabledProp,
@@ -7,13 +8,16 @@ const useAppController = ({
   initialValue,
   notifier,
   onValueChanged,
-  styles,
+  initialStyles,
+  initialVisible,
   stylesNotifier,
+  visibleNotifier,
 }: IAppProps) => {
   const [value, setValue] = useState(initialValue);
   const [disabled, setDisabled] = useState(disabledProp);
-  const [context, setContext] = useState(styles);
-  const [handlerId, disabledHandlerId, stylesHandlerId] = useMemo(() => {
+  const [visible, setVisible] = useState(initialVisible);
+  const [stylesState, setStyles] = useState(initialStyles);
+  const [handlerId, disabledHandlerId, stylesHandlerId, visibleHandlerId] = useMemo(() => {
     return [
       notifier.subscribe((updatedValue) => {
         setValue(updatedValue);
@@ -22,10 +26,13 @@ const useAppController = ({
         setDisabled(updatedValue);
       }),
       stylesNotifier.subscribe((updatedValue) => {
-        setContext(updatedValue);
+        setStyles(updatedValue);
+      }),
+      visibleNotifier.subscribe((updatedValue) => {
+        setVisible(updatedValue);
       }),
     ];
-  }, [notifier, disabledNotifier, stylesNotifier]);
+  }, [notifier, disabledNotifier, stylesNotifier, visibleNotifier]);
   const onChecked = (checked: boolean) => {
     setValue((oldValue) => {
       onValueChanged(checked);
@@ -37,14 +44,27 @@ const useAppController = ({
       notifier.unsubscribe(handlerId);
       disabledNotifier.unsubscribe(disabledHandlerId);
       stylesNotifier.unsubscribe(stylesHandlerId);
+      visibleNotifier.unsubscribe(visibleHandlerId);
     };
   }, [handlerId, disabledHandlerId, stylesHandlerId]);
+
+  const { FalseHandleImage, TrueHandleImage, iconWidth, Height, Width } = useSwitchStyle(stylesState);
+
+  const styles = {
+    ...stylesState,
+    FalseHandleImage,
+    Height,
+    iconWidth,
+    TrueHandleImage,
+    Width,
+  };
 
   return {
     disabled,
     onChecked,
     value,
-    context,
+    styles,
+    visible,
   };
 };
 
