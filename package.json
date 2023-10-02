@@ -4,9 +4,47 @@
   "description": "To use the component follow these steps:\r 1. Import the managed solution into your environment\r 2. Configure the component for your TwoOptions form controls\r    1. Customize the look and feel of each individual control\r 3. The component is compatible with Canvas apps too\r 4. Enjoy!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "pcf-scripts build",
+    "clean": "pcf-scripts clean",
+    "lint": "pcf-scripts lint",
+    "lint:fix": "pcf-scripts lint fix",
+    "rebuild": "pcf-scripts rebuild",
+    "start": "pcf-scripts start",
+    "refreshTypes": "pcf-scripts refreshTypes",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.22.20",
+    "@shko.online/componentframework-mock": "^0.1.24",
+    "@storybook/addon-essentials": "^7.4.5",
+    "@storybook/addon-interactions": "^7.4.5",
+    "@storybook/addon-links": "^7.4.5",
+    "@storybook/blocks": "^7.4.5",
+    "@storybook/html": "^7.4.5",
+    "@storybook/html-webpack5": "^7.4.5",
+    "@storybook/testing-library": "^0.2.1",
+    "@types/react-dom": "^18.2.8",
+    "chromatic": "^7.2.0",
+    "esbuild-loader": "^4.0.2",
+    "pcf-scripts": "^1.27.5",
+    "pcf-start": "^1.27.5",
+    "raw-loader": "^4.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.4.5",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.11",
+    "@mui/styled-engine": "^5.14.11"
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "styledswitch@1.0.0"
 }

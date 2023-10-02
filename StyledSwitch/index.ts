@@ -1,10 +1,27 @@
-import { createElement } from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+/*
+   Copyright 2022 Betim Beja, AlbanianXrm
 
-import App from '@albanian-xrm/styled-switch/App';
-import { IStyledSwitchProps } from '@albanian-xrm/styled-switch/App.types';
-import { IInputs, IOutputs } from '@albanian-xrm/styled-switch/generated/ManifestTypes';
-import { IHandler, Notifier, SwitchValue } from '@albanian-xrm/styled-switch/notifier';
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+
+import { createElement } from 'react';
+import { Root, createRoot } from 'react-dom/client';
+
+import App from './App';
+import { IStyledSwitchProps } from './App.types';
+import { IInputs, IOutputs } from './generated/ManifestTypes';
+import { IHandler, Notifier, SwitchValue } from './notifier';
+import { showBanner } from './banner';
 
 export class StyledSwitch implements ComponentFramework.StandardControl<IInputs, IOutputs> {
   private _notifier = new Notifier<SwitchValue>();
@@ -16,6 +33,7 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
   private _disabled: boolean;
   private _visible: boolean;
   private _container: HTMLDivElement;
+  private _root: Root;
   /**
    * Empty constructor.
    */
@@ -35,11 +53,13 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
     state: ComponentFramework.Dictionary,
     container: HTMLDivElement,
   ): void {
+    showBanner();
     const onValueChanged: IHandler<SwitchValue> = (updatedValue) => {
       this._value = updatedValue;
       notifyOutputChanged();
     };
     this._container = container;
+    this._root = createRoot(container);
     this._disabled = context.mode.isControlDisabled;
     const disabled = this._disabled;
     const initialValue = context.parameters.Value.raw;
@@ -77,7 +97,7 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
       App,
       {
         disabled,
-        initialStyles: this._styles,
+        initialStyles: {...this._styles},
         initialValue,
         initialVisible,
         onValueChanged,
@@ -85,13 +105,13 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
         disabledNotifier,
         stylesNotifier,
         visibleNotifier,
-      },
-      null,
+      }
     );
     // Add control initialization code
-    render(app, container);
+    this._root.render(app);
 
     if ((Width || 0) > 0 && (Height || 0) > 0) {
+      console.log(Width, Height);
       return;
     }
 
@@ -125,7 +145,7 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
    */
   public destroy(): void {
     // Add code to cleanup control if necessary
-    unmountComponentAtNode(this._container);
+    this._root.unmount();
   }
 
   private checkDisabled(disabled: boolean) {
@@ -187,6 +207,6 @@ export class StyledSwitch implements ComponentFramework.StandardControl<IInputs,
       Width,
       Height,
     };
-    this._stylesNotifier.notify(this._styles);
+    this._stylesNotifier.notify({...this._styles});
   }
 }
