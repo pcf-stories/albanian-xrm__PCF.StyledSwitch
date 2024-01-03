@@ -17,6 +17,11 @@
 /** @type { import('@storybook/html').Preview } */
 const preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: ['AlbanianXrm\'s StyledSwitch', ['Introduction', '*']],
+      },
+    },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {

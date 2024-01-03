@@ -27,6 +27,7 @@ const config = {
   docs: {
     autodocs: 'tag',
   },
+  staticDirs: ['./public'],
   webpackFinal: async config => {
     config.devtool = false;
     config.resolve.fallback = config.resolve.fallback || {};
