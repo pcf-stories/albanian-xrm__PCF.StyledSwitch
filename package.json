@@ -32,7 +32,7 @@
     "@storybook/preview-api": "^8.0.0",
     "@storybook/theming": "^8.0.0",
     "@types/react-dom": "^18.2.8",
-    "chromatic": "^7.2.0",
+    "chromatic": "^7.6.0",
     "esbuild-loader": "^4.0.2",
     "pcf-scripts": "^1.27.5",
     "pcf-start": "^1.27.5",
