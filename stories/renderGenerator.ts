@@ -16,15 +16,12 @@
 
 import type { IInputs, IOutputs } from '../StyledSwitch/generated/ManifestTypes';
 import type { StoryArgs } from './StoryArgs';
-
-import { useArgs } from '@storybook/client-api';
+import { useArgs } from '@storybook/preview-api';
 import {
   ComponentFrameworkMockGenerator,
   StringPropertyMock,
   TwoOptionsPropertyMock,
 } from '@shko.online/componentframework-mock';
-
-
 import { StyledSwitch as Component } from '../StyledSwitch';
 
 const renderGenerator = () => {

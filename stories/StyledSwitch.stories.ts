@@ -17,7 +17,6 @@
 import type { Meta, StoryObj } from '@storybook/html';
 import type { StoryArgs } from './StoryArgs';
 import type { IInputs, IOutputs } from '../StyledSwitch/generated/ManifestTypes';
-
 import { defaultArgs } from './defaultArgs';
 import { argTypes } from './argTypes';
 import { Decorator } from './Decorator';
